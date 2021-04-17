@@ -2,10 +2,14 @@ package com.lothrazar.cyclic.registry;
 
 import com.lothrazar.cyclic.base.BlockBase;
 import com.lothrazar.cyclic.base.ItemBase;
+import com.lothrazar.cyclic.fluid.FluidHolderBase;
 import com.lothrazar.cyclic.item.magicnet.EntityMagicNetEmpty;
 import com.lothrazar.cyclic.item.storagebag.StorageBagItem;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.entity.EntityType;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
@@ -20,6 +24,9 @@ public class ClientRegistry {
       b.registerClient();
     }
     for (ItemBase i : ItemRegistry.items) {
+      i.registerClient();
+    }
+    for (FluidHolderBase i : FluidRegistry.fluids) {
       i.registerClient();
     }
     initColours();

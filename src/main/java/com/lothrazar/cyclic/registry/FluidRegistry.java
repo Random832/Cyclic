@@ -1,12 +1,10 @@
 package com.lothrazar.cyclic.registry;
 
-import com.lothrazar.cyclic.fluid.FluidBiomassHolder;
-import com.lothrazar.cyclic.fluid.FluidHoneyHolder;
-import com.lothrazar.cyclic.fluid.FluidMagmaHolder;
-import com.lothrazar.cyclic.fluid.FluidSlimeHolder;
-import com.lothrazar.cyclic.fluid.FluidXpJuiceHolder;
-import net.minecraftforge.eventbus.api.IEventBus;
+import com.lothrazar.cyclic.fluid.*;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class FluidRegistry {
 
@@ -15,13 +13,15 @@ public class FluidRegistry {
   public static FluidBiomassHolder biomass;
   public static FluidHoneyHolder honey;
   public static FluidMagmaHolder magma;
+  public static List<FluidHolderBase> fluids;
 
   public static void setup() {
-    IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
-    xpjuice = new FluidXpJuiceHolder(modEventBus);
-    slime = new FluidSlimeHolder(modEventBus);
-    biomass = new FluidBiomassHolder(modEventBus);
-    honey = new FluidHoneyHolder(modEventBus);
-    magma = new FluidMagmaHolder(modEventBus);
+    FluidHolderBase.initRegistries(FMLJavaModLoadingContext.get().getModEventBus());
+    xpjuice = new FluidXpJuiceHolder();
+    slime = new FluidSlimeHolder();
+    biomass = new FluidBiomassHolder();
+    honey = new FluidHoneyHolder();
+    magma = new FluidMagmaHolder();
+    fluids = Arrays.asList(xpjuice, slime, biomass, honey, magma);
   }
 }
